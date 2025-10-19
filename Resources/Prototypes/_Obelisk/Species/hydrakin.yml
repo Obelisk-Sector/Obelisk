@@ -72,9 +72,9 @@
 - type: humanoidBaseSprite
   id: MobHydrakinAnyMarking
 
-- type: humanoidBaseSprite
-  id: MobHydrakinMarkingMatchSkin
-  markingsMatchSkin: true
+# - type: humanoidBaseSprite
+#   id: MobHydrakinMarkingMatchSkin
+#   markingsMatchSkin: true
 
 - type: humanoidBaseSprite
   id: MobHydrakinHead
