@@ -23,6 +23,7 @@
   keycode: ";"
   frequency: 1459
   color: "#2cdb2c"
+  maxRange: 8000
 
 - type: radioChannel
   id: CentCom
@@ -38,6 +39,7 @@
   keycode: 'c'
   frequency: 1353
   color: "#5569ff" # Mono
+  maxRange: 8000
 
 - type: radioChannel
   id: Engineering
@@ -66,6 +68,7 @@
   keycode: 'g'
   frequency: 1359
   color: "#ff4242"
+  maxRange: 8000
 
 - type: radioChannel
   id: Service
@@ -73,6 +76,7 @@
   keycode: 'v'
   frequency: 1349
   color: "#09b96d"
+  maxRange: 8000
 
 - type: radioChannel
   id: Supply
@@ -87,7 +91,7 @@
   keycode: 't'
   frequency: 1213
   color: "#8f4a4b"
-#  longRange: true # Frontier - Move to Syndicate Base
+  maxRange: 8000
 
 - type: radioChannel
   id: Handheld
@@ -116,5 +120,4 @@
   keycode: 'f'
   frequency: 1984
   color: "#f6ce64"
-  # long range since otherwise it'd defeat the point of a handheld radio independent of telecomms
-  #longRange: true # Frontier - Move to server on cove
+  maxRange: 8000
