@@ -21,4 +21,5 @@
   keycode: 's'
   frequency: 1023
   color: "#0c8ad3"
+  maxRange: 8000
 
