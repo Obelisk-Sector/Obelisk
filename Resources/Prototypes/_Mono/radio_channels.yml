@@ -10,7 +10,7 @@
   keycode: 'p'
   frequency: 1723
   color: "#b2224b"
-  longRange: true
+  maxRange: 8000
 
 - type: radioChannel
   id: UsspCommand
@@ -18,7 +18,7 @@
   keycode: 'i'
   frequency: 1725
   color: "#ff0026"
-  longRange: true
+  maxRange: 8000
 
 - type: radioChannel
   id: Letoferol
