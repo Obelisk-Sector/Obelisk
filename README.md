@@ -1,14 +1,10 @@
-<p align="center"> <img alt="Frontier Station 14" width="880" height="300" src="https://raw.githubusercontent.com/Monolith-Station/Monolith/89d435f0d2c54c4b0e6c3b1bf4493c9c908a6ac7/Resources/Textures/_Mono/Logo/logo.png?raw=true" /></p>
+<img width="2160" height="1080" alt="Obelisklong" src="https://github.com/user-attachments/assets/4b8c1aa1-64d6-42c8-a392-ef3bb109c39f" />
 
-Monolith is a fork of [Frontier Station 14](https://github.com/new-frontiers-14/frontier-station-14) that runs on the [Robust Toolbox](https://github.com/space-wizards/RobustToolbox) engine written in C#.
-
-This is the primary repo for Monolith.
-
-If you want to host or create content for Monolith, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
+Obelisk is a fork of [Monolith](https://github.com/Monolith-Station/Monolith), a [Space Station 14](https://store.steampowered.com/app/1255460/Space_Station_14/) server that runs on the [Robust Toolbox](https://github.com/space-wizards/RobustToolbox) engine written in C#.
 
 ## Links
 
-[Discord](https://discord.gg/mxY4h2JuUw) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
+[Obelisk Discord](https://discord.gg/9YTwh2hAwj) | [SS14 Steam](https://store.steampowered.com/app/1255460/Space_Station_14/)
 
 ## Contributing
 
