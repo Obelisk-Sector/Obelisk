@@ -124,6 +124,9 @@
     - Marish
     - Freespeak
     - Tradeband
+    - NovaCygniBasic
+    - Azaziba
+    - Gary
     understands:
     - TauCetiBasic # Add individual languages so they can understand without understanding animals.
     - Canilunzt
@@ -142,6 +145,9 @@
     - Freespeak
     - Tradeband
     - Sign # Should know it but not speak it, for obvious reasons.
+    - NovaCygniBasic
+    - Azaziba
+    - Gary
   # Einstein Engines - Language end
 
 - type: entity
