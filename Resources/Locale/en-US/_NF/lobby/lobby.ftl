@@ -1,17 +1,17 @@
 frontier-lobby-station-title = Station
 frontier-lobby-available-jobs = Available Jobs
 frontier-lobby-no-stations-available = There are no stations available at this time.
-frontier-lobby-no-crews-available = Currently there are no captains looking for crews.
-frontier-lobby-station-subtext = Wake up from cryosleep to become captain, find adventure, or employed as staff onboard a station such as janitor, mail carrier, or security staff.
+frontier-lobby-no-crews-available = Currently there is no one for crew
+frontier-lobby-station-subtext = Wake up from cryosleep to find adventure
 frontier-lobby-crew-title = Crew
-frontier-lobby-crew-subtext = Start your round aboard a ship amongst a crew that is looking for new crewmembers to give them a helping hand, whether you are a new or seasoned pilot!
+frontier-lobby-crew-subtext = Start your round aboard a ship amongst a crew that is looking for new crewmembers to give them a helping hand
 
-frontier-lobby-frontier-subtext = Main hub for many space pioneers.
+frontier-lobby-frontier-subtext = Focal point of the Obelisk Sector
 frontier-lobby-frontier-description = Awaken from cryosleep here to:
-   - Start your own crew and become captain
+   - Start your own crew or work in your "company"
    - Find a crew to join
    - Purchase ships
-   - Socialize with other pioneers
+   - Socialize with others
  Some of the roles on this station are whitelist-only and require an application in the discord to be accepted.
 
 frontier-lobby-exped-subtext = Where seasoned mercenaries gather.

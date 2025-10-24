@@ -1,8 +1,11 @@
 - type: entity
   id: Singularity
   name: gravitational singularity
-  description: A mesmerizing swirl of darkness that sucks in everything. If it's moving towards you, run.
+  description: A mesmerizing swirl of darkness that sucks in everything.
   components:
+  - type: RadarBlip
+    radarColor: "#5500B0"
+    scale: 6
   - type: Clickable
   - type: AmbientSound
     volume: -4
@@ -48,9 +51,6 @@
     level: 1
     radsPerLevel: 2
     energyLoss: 1
-  - type: RandomWalk # To make the singularity move around.
-    maxSpeed: 2.5
-    minSpeed: 1.875
   - type: SingularityDistortion
     falloffPower: 2.529822
     intensity: 3645
