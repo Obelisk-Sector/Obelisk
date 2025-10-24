@@ -17,8 +17,8 @@
 
 - type: gameMap
   id: Frontier
-  mapName: 'Colonial Outpost'
-  mapPath: /Maps/_Mono/Outpost/colonial.yml # Mono
+  mapName: 'Parable Outpost'
+  mapPath: /Maps/_Obelisk/Outpost/parableoutpost.yml # Mono
   minPlayers: 0
   maxPlayers: 100
   randomRotation: false
@@ -28,7 +28,7 @@
       stationProto: StandardFrontierStation
       components:
         - type: StationNameSetup
-          mapNameTemplate: 'Colonial Outpost'
+          mapNameTemplate: 'Parable Outpost'
 #          nameGenerator:
 #            !type:NanotrasenNameGenerator
 #            prefixCreator: '14'
