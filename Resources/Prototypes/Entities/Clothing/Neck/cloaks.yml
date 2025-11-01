@@ -13,7 +13,7 @@
   parent: ClothingNeckBase # Frontier: removed BaseCommandContraband
   id: ClothingNeckCloakCap
   name: captain's cloak
-  description: A pompous and comfy blue cloak with a nice gold trim, while not particularly valuable as your other possessions, it sure is fancy.
+  description: A pompous and comfy blue and purple cloak with dangling decor, while not particularly valuable as your other possessions, it sure is fancy. # Obelisk: Changed Description
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/cap.rsi
@@ -35,7 +35,7 @@
   parent: ClothingNeckBase # Frontier: removed BaseCommandContraband
   id: ClothingNeckCloakCe
   name: chief engineer's cloak
-  description: A dark green cloak with light blue ornaments, given to those who proved themselves to master the precise art of engineering.
+  description: A black cloak with green and orange ornaments, given to those who proved themselves to master the precise art of engineering. # Obelisk: Changed Description
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/ce.rsi
@@ -46,7 +46,7 @@
   parent: ClothingNeckBase # Frontier: removed BaseCommandContraband
   id: ClothingCloakCmo
   name: chief medical officer's cloak
-  description: A sterile blue cloak with a green cross, radiating with a sense of duty and willingness to help others.
+  description: A sterile blue cloak with a red Caduceus helix, radiating with a sense of duty and willingness to help others. # Obelisk: Changed Description
   components:
   - type: Sprite
     sprite: Clothing/Neck/Cloaks/cmo.rsi
