@@ -110,6 +110,11 @@
   kind: source
   path: "/Textures/Shaders/hologram.swsl"
 
+- type: shader
+  id: HeatBlur
+  kind: source
+  path: "/Textures/Shaders/heatBlur.swsl"
+
 # Monolith addition
 # Cuts out everything outside of a circle
 # Anti-aliased so the edges are smooth
@@ -118,3 +123,4 @@
   id: CircleAlphaMask
   kind: source
   path: "/Textures/Shaders/circle_alpha_mask.swsl"
+
