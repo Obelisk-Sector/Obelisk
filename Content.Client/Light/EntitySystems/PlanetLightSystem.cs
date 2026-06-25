@@ -35,32 +35,6 @@ public sealed partial class PlanetLightSystem : EntitySystem
 
     private bool _ambientOcclusion;
 
-    /// <summary>
-    /// Enables / disables the ambient occlusion overlay.
-    /// </summary>
-    public bool AmbientOcclusion
-    {
-        get => _ambientOcclusion;
-        set
-        {
-            if (_ambientOcclusion == value)
-                return;
-
-            _ambientOcclusion = value;
-
-            if (value)
-            {
-                _overlayMan.AddOverlay(new AmbientOcclusionOverlay());
-            }
-            else
-            {
-                _overlayMan.RemoveOverlay<AmbientOcclusionOverlay>();
-            }
-        }
-    }
-
-    private bool _ambientOcclusion;
-
     public override void Initialize()
     {
         base.Initialize();
