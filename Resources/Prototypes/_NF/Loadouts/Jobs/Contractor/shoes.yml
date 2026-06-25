@@ -1,14 +1,3 @@
-# SPDX-FileCopyrightText: 2024 Checkraze
-# SPDX-FileCopyrightText: 2024 ErhardSteinhauer
-# SPDX-FileCopyrightText: 2024 Whatstone
-# SPDX-FileCopyrightText: 2025 Dvir
-# SPDX-FileCopyrightText: 2025 Havaren
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 dustylens
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: loadout
   id: ContractorClothingShoesColorBlack
   hideEffects:
@@ -26,6 +15,15 @@
   price: 0 # Mono
   equipment:
     shoes: ClothingShoesClothwrap
+
+- type: loadout
+  id: ContractorClothingShoesClothwrapBlack # Mono
+  hideEffects:
+  - !type:GroupLoadoutEffect
+    proto: ShoesCapableNF
+  price: 0 # Mono
+  equipment:
+    shoes: ClothingShoesClothwrapBlack
 
 - type: loadout
   id: ContractorClothingShoesTourist

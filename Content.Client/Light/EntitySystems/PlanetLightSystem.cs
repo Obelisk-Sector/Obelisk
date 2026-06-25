@@ -1,18 +1,13 @@
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 metalgearsloth
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.CCVar;
 using Robust.Client.Graphics;
 using Robust.Shared.Configuration;
 
 namespace Content.Client.Light.EntitySystems;
 
-public sealed class PlanetLightSystem : EntitySystem
+public sealed partial class PlanetLightSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
-    [Dependency] private readonly IOverlayManager _overlayMan = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
+    [Dependency] private IOverlayManager _overlayMan = default!;
 
     /// <summary>
     /// Enables / disables the ambient occlusion overlay.

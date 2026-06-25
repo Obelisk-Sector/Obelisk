@@ -1,10 +1,4 @@
-# SPDX-FileCopyrightText: 2025 Arcticular
-# SPDX-FileCopyrightText: 2025 Arcticular1
-# SPDX-FileCopyrightText: 2025 Cojoke
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
+#Author: Starch(!)
 
 - type: vessel
   id: Dagger
@@ -12,6 +6,7 @@
   name: TSF-SKR Dagger
   description: Straight from the shipyards of Sol, this ship is equipped with a mass driver as its main armament for long-range fire support.
   price: 120000
+  purchasable: false # voucher only
   category: Medium
   group: Security
   access: Security
@@ -40,4 +35,5 @@
       - type: StationJobs
         availableJobs:
           Deputy: [ 0, 0 ]
+          TsfBorg: [ 0, 0 ]
 

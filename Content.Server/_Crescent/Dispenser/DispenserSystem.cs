@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 starch
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared._Crescent.Dispenser;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
@@ -9,10 +5,10 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server._Crescent.Dispenser;
 
-public sealed class DispenserSystem : SharedDispenserSystem
+public sealed partial class DispenserSystem : SharedDispenserSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
-    [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
+    [Dependency] private SharedVirtualItemSystem _virtualItemSystem = default!;
 
     public override void Initialize()
     {

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 bitcrushing
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using System.Numerics;
 using Content.Shared.Physics;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -13,11 +9,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanDiffractSystem : EntitySystem
+public sealed partial class HitscanDiffractSystem : EntitySystem
 {
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {

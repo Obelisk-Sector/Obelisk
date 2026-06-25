@@ -1,21 +1,7 @@
-// SPDX-FileCopyrightText: 2022 DrSmugleaf
-// SPDX-FileCopyrightText: 2022 Kara
-// SPDX-FileCopyrightText: 2022 Nemanja
-// SPDX-FileCopyrightText: 2022 metalgearsloth
-// SPDX-FileCopyrightText: 2023 Leon Friedrich
-// SPDX-FileCopyrightText: 2023 Slava0135
-// SPDX-FileCopyrightText: 2023 Ygg01
-// SPDX-FileCopyrightText: 2024 Tayrtahn
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 SlamBamActionman
-// SPDX-FileCopyrightText: 2025 beck-thompson
-// SPDX-FileCopyrightText: 2025 bitcrushing
-//
-// SPDX-License-Identifier: MIT
-
-using Content.Server.Power.Components;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Events;
+using Content.Shared.Power;
+using Content.Shared.Power.Components;
 using Content.Shared.PowerCell.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Hitscan.Components;
@@ -28,8 +14,8 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
-    [Dependency] private readonly BatterySystem _battery = default!; // Mono
-    [Dependency] private readonly PowerCellSystem _powerCell = default!; // Mono
+    [Dependency] private BatterySystem _battery = default!; // Mono
+    [Dependency] private PowerCellSystem _powerCell = default!; // Mono
     protected override void InitializeBattery()
     {
         base.InitializeBattery();
@@ -75,7 +61,10 @@ public sealed partial class GunSystem
         if (_powerCell.TryGetBatteryFromSlot(uid, out var cellBattery))
         {
             UpdateShots(uid, component, cellBattery.CurrentCharge, cellBattery.MaxCharge);
-            return;
+        }
+        else
+        {
+            UpdateShots(uid, component, 0, component.Capacity * component.FireCost);
         }
     }
     // Mono End

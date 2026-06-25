@@ -1,19 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Flipp Syder
-// SPDX-FileCopyrightText: 2022 Nemanja
-// SPDX-FileCopyrightText: 2022 Paul Ritter
-// SPDX-FileCopyrightText: 2022 keronshb
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2023 Slava0135
-// SPDX-FileCopyrightText: 2023 metalgearsloth
-// SPDX-FileCopyrightText: 2023 themias
-// SPDX-FileCopyrightText: 2024 Aviu00
-// SPDX-FileCopyrightText: 2024 nikthechampiongr
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 starch
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared._Mono.Blocking;
 using Content.Shared.Damage;
 using Content.Shared.Item.ItemToggle.Components;
@@ -25,8 +9,8 @@ namespace Content.Shared.Blocking;
 
 public sealed partial class BlockingSystem : SharedBlockingSystem // Mono
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     private void InitializeUser()
     {
@@ -59,7 +43,7 @@ public sealed partial class BlockingSystem : SharedBlockingSystem // Mono
 
     private void OnUserDamageModified(EntityUid uid, BlockingUserComponent component, DamageModifyEvent args)
     {
-        if (TryComp<ItemToggleComponent>(component.BlockingItem, out var toggleComponent) && TryComp<BlockingComponent>(component.BlockingItem, out var blocking)) // Mono
+        if (TryComp<BlockingComponent>(component.BlockingItem, out var blocking)) // Mono
         {
             if (args.Damage.GetTotal() <= 0)
                 return;
@@ -68,7 +52,7 @@ public sealed partial class BlockingSystem : SharedBlockingSystem // Mono
             if (!TryComp<DamageableComponent>(component.BlockingItem, out var dmgComp))
                 return;
 
-            if (!toggleComponent.Activated) // Mono
+            if (TryComp<ItemToggleComponent>(component.BlockingItem, out var toggleComponent) && !toggleComponent.Activated) // Mono
                 return;
 
             var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;

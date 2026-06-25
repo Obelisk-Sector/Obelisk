@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
 using Content.Shared.Destructible;
@@ -12,9 +7,9 @@ using Content.Shared.Explosion;
 
 namespace Content.Server.Disposal.Unit;
 
-public sealed class DisposalUnitSystem : SharedDisposalUnitSystem
+public sealed partial class DisposalUnitSystem : SharedDisposalUnitSystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosSystem = default!;
+    [Dependency] private AtmosphereSystem _atmosSystem = default!;
 
     public override void Initialize()
     {

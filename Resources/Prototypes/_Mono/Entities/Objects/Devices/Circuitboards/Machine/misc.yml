@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Ilya246
-# SPDX-FileCopyrightText: 2025 bitcrushing
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity
   parent: BaseMachineCircuitboard
   id: CarpCallerMachineCircuitboard
@@ -40,6 +35,20 @@
   components:
   - type: MachineBoard
     prototype: SmartFridge
+    requirements:
+      Capacitor: 1
+    stackRequirements:
+      Glass: 5
+      Cable: 1
+
+- type: entity
+  parent: BaseMachineCircuitboard
+  id: SmartArmoryCircuitboard
+  name: smart-armory machine board
+  description: A machine printed circuit board for a smart-armory.
+  components:
+  - type: MachineBoard
+    prototype: SmartArmoryStorage
     requirements:
       Capacitor: 1
     stackRequirements:

@@ -1,16 +1,6 @@
-# SPDX-FileCopyrightText: 2025 Ark
-# SPDX-FileCopyrightText: 2025 BoskiYourk
-# SPDX-FileCopyrightText: 2025 Daniel Lenrd
-# SPDX-FileCopyrightText: 2025 Onezero0
-# SPDX-FileCopyrightText: 2025 cheetah1984
-# SPDX-FileCopyrightText: 2025 sleepyyapril
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 # Nfsd
 - type: roleLoadout
-  id: JobCadet
+  id: JobCadet # Unused
   groups:
   - TsfmcHead
   - TsfmcNeck
@@ -35,6 +25,7 @@
   - NfsdSpeciesSpecific
   - TsfmcFirearm
   - TsfmcMag
+  - FactionArmorPlates
   canCustomizeName: true # pseudonym?
 
 - type: roleLoadout
@@ -61,7 +52,10 @@
   - ContractorTrinkets
   - NfsdSpeciesSpecific
   - TsfmcFirearm
+  - TsfmcSidearm
   - TsfmcMag
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true
 
 - type: roleLoadout
@@ -88,14 +82,17 @@
   - ContractorTrinkets
   - NfsdSpeciesSpecific
   - TsfmcFirearm
+  - TsfmcSidearm
   - TsfmcMag
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true
 
 - type: roleLoadout
-  id: JobBailiff # Unused
+  id: JobBailiff # Captain
   groups:
   - TsfmcHead
-  - TsfmcNeck
+  - TsfmcNeckCaptain
   - TsfmcJumpsuit
   - TsfmcGloves
   - TsfmcBackpack
@@ -115,7 +112,10 @@
   - SeniorOfficerTrinkets
   - NfsdSpeciesSpecific
   - TsfmcFirearm
+  - TsfmcSidearm
   - TsfmcMag
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true
 
 - type: roleLoadout
@@ -142,7 +142,10 @@
   - SeniorOfficerTrinkets
   - NfsdSpeciesSpecific
   - TsfmcFirearm
+  - TsfmcSidearm
   - TsfmcMag
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true
 
 - type: roleLoadout
@@ -168,7 +171,10 @@
   - SeniorOfficerTrinkets
   - NfsdSpeciesSpecific
   - TsfmcFirearmColonel
+  - TsfmcSidearm
   - TsfmcMag
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true
 
 - type: roleLoadout
@@ -194,4 +200,7 @@
   - ContractorFun
   - ContractorTrinkets
   - NfsdSpeciesSpecific
+  - TsfmcSidearm
+  - TsfmcSidearmAmmo
+  - FactionArmorPlates
   canCustomizeName: true

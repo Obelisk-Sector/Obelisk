@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity
   id: AFInterceptorFilled
   parent: AFInterceptorBattery
@@ -33,26 +29,6 @@
     - MediumMechTOW
 
 - type: entity
-  id: AFInterceptorGBattery
-  parent: AFInterceptorG
-  suffix: Battery
-  components:
-  - type: ContainerFill
-    containers:
-      mech-battery-slot:
-      - PowerCageHigh
-
-- type: entity
-  id: AFInterceptorGFilled
-  parent: AFInterceptorGBattery
-  suffix: Battery, Filled
-  components:
-  - type: Mech
-    startingEquipment:
-    - MediumMechDMR
-    - LightMechaSMG
-
-- type: entity
   name: AF-28 Broadsword Spawner
   suffix: Filled
   id: SpawnMechAFInterceptorFilled
@@ -77,16 +53,3 @@
   - type: ConditionalSpawner
     prototypes:
     - AFInterceptorMFilled
-
-- type: entity
-  name: AF-28-G Sabre Spawner
-  suffix: Filled
-  id: SpawnMechAFInterceptorGFilled
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: green
-  - type: ConditionalSpawner
-    prototypes:
-    - AFInterceptorGFilled

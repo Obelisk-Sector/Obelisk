@@ -1,8 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Onezero0
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: MPL-2.0
-
 - type: department
   id: PMC
   name: department-PMC
@@ -23,8 +18,18 @@
   roles:
   - USSPCommissar
   - USSPSergeant
-  - USSPCorporal
-  - USSPMedic
   - USSPRifleman
   primary: false
-  editorHidden: true
+
+- type: department
+  id: ViperGroup
+  name: department-Viper
+  description: department-Viper-description
+  color: "#6b0000"
+  weight: 0 # I think it's best you pick this on purpose.
+  roles:
+  - VGInfanteer
+  - VGLieutenant
+  - VGCommander
+  primary: false
+  editorHidden: false

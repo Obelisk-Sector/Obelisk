@@ -1,11 +1,4 @@
-# SPDX-FileCopyrightText: 2025 BoskiYourk
-# SPDX-FileCopyrightText: 2025 HungryCuban
-# SPDX-FileCopyrightText: 2025 Ilya246
-# SPDX-FileCopyrightText: 2025 Onezero0
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
+#Author: BoskiYourk on github, [I AM NOT SURE] on Discord.
 
 - type: vessel
   id: Ledokol
@@ -36,6 +29,9 @@
   stations:
     Ledokol:
       stationProto: StandardFrontierVessel
+      gridComponents:
+      - type: VesselInfo
+        description: "Why did I come to this sector?"
       components:
         - type: StationNameSetup
           mapNameTemplate: 'Ledokol USSP{1}'
@@ -44,5 +40,5 @@
             prefixCreator: '14'
         - type: StationJobs
           availableJobs:
-            Mercenary: [ 0, 0 ]
-            Pilot: [ 0, 0 ]
+           USSPSergeant: [ 0, 0 ]
+           USSPRifleman: [ 0, 0 ]

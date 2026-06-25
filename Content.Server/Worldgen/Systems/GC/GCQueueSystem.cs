@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Cheackraze
-// SPDX-FileCopyrightText: 2023 Moony
-// SPDX-FileCopyrightText: 2023 metalgearsloth
-// SPDX-FileCopyrightText: 2024 Dvir
-// SPDX-FileCopyrightText: 2025 Redrover1760
-//
-// SPDX-License-Identifier: MIT
-
 using System.Linq;
 using Content.Server.Worldgen.Components.GC;
 using Content.Server.Worldgen.Prototypes;
@@ -21,11 +13,11 @@ namespace Content.Server.Worldgen.Systems.GC;
 /// <summary>
 ///     This handles delayed garbage collection of entities, to avoid overloading the tick in particularly expensive cases.
 /// </summary>
-public sealed class GCQueueSystem : EntitySystem
+public sealed partial class GCQueueSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     [ViewVariables] private TimeSpan _maximumProcessTime = TimeSpan.Zero;
 

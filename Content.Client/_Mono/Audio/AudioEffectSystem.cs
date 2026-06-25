@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 LaCumbiaDelCoronavirus
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: MPL-2.0
-
 // some parts taken and modified from https://github.com/TornadoTechnology/finster/blob/1af5daf6270477a512ee9d515371311443e97878/Content.Shared/_Finster/Audio/SharedAudioEffectsSystem.cs#L13 , credit to docnite
 // they're under WTFPL so its quite allowed
 
@@ -21,10 +16,10 @@ namespace Content.Goobstation.Client.Audio;
 /// <summary>
 ///     Handler for client-side audio effects.
 /// </summary>
-public sealed class AudioEffectSystem : EntitySystem
+public sealed partial class AudioEffectSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private SharedAudioSystem _audioSystem = default!;
 
     /// <summary>
     ///     Whether creating new auxiliaries is safe.

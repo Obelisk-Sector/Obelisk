@@ -1,18 +1,3 @@
-// SPDX-FileCopyrightText: 2019 Víctor Aguilera Puerto
-// SPDX-FileCopyrightText: 2021 Acruid
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
-// SPDX-FileCopyrightText: 2022 mirrorcult
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 TemporalOroboros
-// SPDX-FileCopyrightText: 2024 Leon Friedrich
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2024 metalgearsloth
-// SPDX-FileCopyrightText: 2025 Milon
-// SPDX-FileCopyrightText: 2025 SpaceManiac
-// SPDX-FileCopyrightText: 2025 bitcrushing
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using Content.Shared.ActionBlocker;
 using Content.Shared.Instruments;
 using Content.Shared.Instruments.UI;
@@ -23,12 +8,12 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Instruments.UI
 {
-    public sealed class InstrumentBoundUserInterface : BoundUserInterface
+    public sealed partial class InstrumentBoundUserInterface : BoundUserInterface
     {
         public IEntityManager Entities => EntMan;
-        [Dependency] public readonly IMidiManager MidiManager = default!;
-        [Dependency] public readonly IFileDialogManager FileDialogManager = default!;
-        [Dependency] public readonly ILocalizationManager Loc = default!;
+        [Dependency] public IMidiManager MidiManager = default!;
+        [Dependency] public IFileDialogManager FileDialogManager = default!;
+        [Dependency] public ILocalizationManager Loc = default!;
 
         public readonly InstrumentSystem Instruments;
         public readonly ActionBlockerSystem ActionBlocker;

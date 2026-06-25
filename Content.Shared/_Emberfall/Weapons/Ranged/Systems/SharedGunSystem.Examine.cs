@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 MilonPL
-// SPDX-FileCopyrightText: 2025 starch
-//
-// SPDX-License-Identifier: MIT
-
 using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -16,8 +11,6 @@ namespace Content.Shared.Weapons.Ranged.Systems;
 
 public abstract partial class SharedGunSystem
 {
-    [Dependency] private readonly ExamineSystemShared _examine = default!;
-
     private void OnGunVerbExamine(Entity<GunComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
         if (!args.CanInteract || !args.CanAccess)
@@ -28,7 +21,7 @@ public abstract partial class SharedGunSystem
         var ev = new GunExamineEvent(examineMarkup);
         RaiseLocalEvent(ent, ref ev);
 
-        _examine.AddDetailedExamineVerb(args,
+        Examine.AddDetailedExamineVerb(args,
             ent.Comp,
             examineMarkup,
             Loc.GetString("gun-examinable-verb-text"),

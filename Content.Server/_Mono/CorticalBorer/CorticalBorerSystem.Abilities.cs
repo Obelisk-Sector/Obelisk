@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Coenx-flex
-// SPDX-FileCopyrightText: 2025 Cojoke
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server._NF.Salvage;
 using Content.Server.Body.Components;
 using Content.Server.Medical;
@@ -19,7 +12,7 @@ namespace Content.Server._Mono.CorticalBorer;
 
 public sealed partial class CorticalBorerSystem
 {
-    [Dependency] private readonly VomitSystem _vomit = default!;
+    [Dependency] private VomitSystem _vomit = default!;
 
     private void SubscribeAbilities()
     {
@@ -134,6 +127,11 @@ public sealed partial class CorticalBorerSystem
             return;
 
         InfestTarget(ent, target);
+
+        // Thermal regulation is disabled because of a weird interaction with disabling heat while inside body. 
+        if (TryComp<ThermalRegulatorComponent>(ent, out var thermComp))
+            thermComp.DisableProcessing = true;
+
         args.Handled = true;
     }
 
@@ -154,6 +152,10 @@ public sealed partial class CorticalBorerSystem
             return;
 
         TryEjectBorer(ent);
+
+        // Thermal regulation can be re-enabled only if they're out of the body.
+        if (!ent.Comp.Host.HasValue && TryComp<ThermalRegulatorComponent>(ent, out var thermComp))
+            thermComp.DisableProcessing = false;
 
         args.Handled = true;
     }

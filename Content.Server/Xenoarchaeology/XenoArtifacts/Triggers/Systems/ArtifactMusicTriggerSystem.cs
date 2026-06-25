@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Nemanja
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2025 bitcrushing
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using System.Linq;
 using Content.Server.Instruments;
 using Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Components;
@@ -14,9 +8,9 @@ namespace Content.Server.Xenoarchaeology.XenoArtifacts.Triggers.Systems;
 /// <summary>
 /// This handles activating an artifact when music is playing nearby
 /// </summary>
-public sealed class ArtifactMusicTriggerSystem : EntitySystem
+public sealed partial class ArtifactMusicTriggerSystem : EntitySystem
 {
-    [Dependency] private readonly ArtifactSystem _artifact = default!;
+    [Dependency] private ArtifactSystem _artifact = default!;
 
     private readonly List<Entity<ArtifactMusicTriggerComponent, TransformComponent>> _artifacts = new();
 

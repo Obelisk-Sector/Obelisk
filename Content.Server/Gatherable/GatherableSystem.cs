@@ -14,13 +14,13 @@ namespace Content.Server.Gatherable;
 
 public sealed partial class GatherableSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly TagSystem _tagSystem = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private IPrototypeManager _proto = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private DestructibleSystem _destructible = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private TagSystem _tagSystem = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {
@@ -66,13 +66,15 @@ public sealed partial class GatherableSystem : EntitySystem
         // This ensures that components like OreVein have their event handlers called
         var eventArgs = new DestructionEventArgs();
         RaiseLocalEvent(gatheredUid, eventArgs);
-        
+
         // Now queue the entity for deletion
         QueueDel(gatheredUid);
 
         // Spawn the loot!
         if (component.Loot == null)
             return;
+
+        component.Gathered = true; // mono
 
         var pos = _transform.GetMapCoordinates(gatheredUid);
 
