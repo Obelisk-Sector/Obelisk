@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Coenx-flex
-// SPDX-FileCopyrightText: 2025 Cojoke
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server._NF.CryoSleep;
 using Content.Server.Chat.Managers;
 using Content.Server.Roles;
@@ -17,10 +10,10 @@ namespace Content.Server._Mono.SpawnCoordinates;
 /// <summary>
 /// System that displays spawn coordinates to players when they spawn.
 /// </summary>
-public sealed class SpawnCoordinatesSystem : EntitySystem
+public sealed partial class SpawnCoordinatesSystem : EntitySystem
 {
-    [Dependency] private readonly IChatManager _chatManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

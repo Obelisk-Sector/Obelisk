@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 starch
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using System.Collections.Generic;
 using Content.Shared.Research.Prototypes;
 using Robust.Shared.Maths;
@@ -20,7 +16,7 @@ public sealed class TechnologyTreeTests
 
         var protoManager = server.ResolveDependency<IPrototypeManager>();
 
-        Dictionary<Vector2i, string> techNamesByPosition = new();
+        // Dictionary<Vector2i, string> techNamesByPosition = new(); // Mono: Commented out since duplicate-position techs are normal (we hide techs if the server can't research them)
 
         await server.WaitPost(() =>
         {
@@ -28,8 +24,8 @@ public sealed class TechnologyTreeTests
             {
                 foreach (var tech in protoManager.EnumeratePrototypes<TechnologyPrototype>())
                 {
-                    Assert.That(techNamesByPosition.TryGetValue(tech.Position, out var techName), Is.False, $"Tech {tech.ID} has a duplicate position {tech.Position} with {techName}.");
-                    techNamesByPosition[tech.Position] = tech.ID;
+                    //Assert.That(techNamesByPosition.TryGetValue(tech.Position, out var techName), Is.False, $"Tech {tech.ID} has a duplicate position {tech.Position} with {techName}."); // Mono: Commented out since duplicate-position techs are normal (we hide techs if the server can't research them)
+                    //techNamesByPosition[tech.Position] = tech.ID;
 
                     foreach (var recipe in tech.RecipeUnlocks)
                     {

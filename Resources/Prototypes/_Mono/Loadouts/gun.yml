@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Daniel Lenrd
-# SPDX-FileCopyrightText: 2025 Onezero0
-# SPDX-FileCopyrightText: 2025 core-mene
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 #region Civilian
 
 - type: loadout #MK32 Universal
@@ -91,6 +84,13 @@
     back:
     - WeaponRifleLecterPMC
 
+- type: loadout #Iroh
+  id: MercenaryIrohLoadout
+  price: 100000 # Sorry sir, this is premium.
+  storage:
+    back:
+    - WeaponRifleIroh
+
 - type: loadout # Prometheus
   id: MercenaryPrometheusLoadout
   price: 15000
@@ -140,12 +140,40 @@
     back:
     - WeaponRifleVulcanFCMC
 
-- type: loadout #Vulcan-C Ammo
+- type: loadout #Lee Enfield
+  id: MercenaryLeeEnfieldLoadout
+  price: 15000
+  storage:
+    back:
+    - WeaponRifleLeeEnfield
+
+- type: loadout #Vulcan-C / Lee Enfield Ammo
   id: Mercenary762x51mmAmmoLoadout
   price: 1000
   storage:
     back:
     - BoxMagazine762x51mmFMJ
+
+- type: loadout #Mosin
+  id: MercenaryMosinLoadout
+  price: 5000
+  storage:
+    back:
+    - WeaponSniperMosin
+
+- type: loadout #SVS42
+  id: MercenarySvsLoadout
+  price: 15000
+  storage:
+    back:
+    - WeaponRifleSVS
+
+- type: loadout #Mosin / SVS42 Ammo
+  id: Mercenary762x54mmRAmmoLoadout
+  price: 1000
+  storage:
+    back:
+    - BoxMagazine762x54mmRFMJ
 
 # Shotguns
 
@@ -162,6 +190,13 @@
   storage:
    back:
     - WeaponShotgunEnforcerPMC
+
+- type: loadout #Helepolis Sidearm
+  id: MercenaryHelepolisLoadout
+  price: 3000
+  storage:
+    back:
+    - WeaponShotgunHelepolis
 
 - type: loadout #Buckshot Shells
   id: MercenaryBuckshotAmmoLoadout
@@ -364,14 +399,14 @@
 
 # Rifles
 
-- type: loadout #Lecter
-  id: SecurityGuardLecterLoadout
+- type: loadout #Iroh
+  id: SecurityGuardIrohLoadout
+  name: iroh gun case
   price: 0
-  storage:
-    back:
-    - WeaponRifleLecter
+  inhand:
+  - WeaponCaseLongIrohSecurity
 
-- type: loadout #Lecter / Prometheus Ammo
+- type: loadout #Iroh Ammo
   id: SecurityGuard556x45mmAmmoLoadout
   price: 0
   storage:
@@ -403,14 +438,14 @@
 
 # SMGs
 
-- type: loadout #Drozd
-  id: SecurityGuardDrozdLoadout
+- type: loadout #Vector
+  id: SecurityGuardVectorLoadout
   price: 0
   storage:
     back:
-    - WeaponSubMachineGunDrozd
+    - WeaponSubMachineGunVector45_ACPRegistered
 
-- type: loadout #Drozd Rubber Ammo
+- type: loadout #Drozd/Vector Ammo
   id: SecurityGuardAcpSmgAmmoRubberLoadout
   price: 0
   storage:
@@ -448,6 +483,29 @@
   storage:
     back:
     - BoxMagazine45_ACPRubber
+
+#region Station Rep
+
+- type: loadout #Lecter
+  id: StationRepWeaponEnergyShotgun
+  price: 0
+  storage:
+    back:
+    - WeaponEnergyShotgun
+
+- type: loadout #Lecter
+  id: StationRepWeaponRifleLecter
+  price: 0
+  storage:
+    back:
+    - WeaponRifleLecter
+
+- type: loadout #Lecter
+  id: StationRepWeaponRifleAk
+  price: 0
+  storage:
+    back:
+    - WeaponRifleAk
 
 #region Factions
 
@@ -663,3 +721,38 @@
   storage:
     back:
     - WeaponPistolHawk4
+
+- type: loadout #Python
+  id: FactionPythonLoadout
+  price: 0
+  storage:
+    back:
+    - WeaponRevolverPython
+
+- type: loadout # Inspector Exactly the same as the python why does this even exist
+  id: FactionInspectorLoadout
+  price: 0
+  storage:
+    back:
+    - WeaponRevolverInspector
+
+- type: loadout #.45 Magnum Ammo
+  id: FactionMagnum45Loadout
+  price: 0
+  storage:
+    back:
+    - AmmoBox45_magnumFMJ
+
+- type: loadout # Laser Pistol
+  id: FactionLaserPistolLoadout
+  price: 0
+  storage:
+    back:
+    - WeaponLaserPistolNF
+
+- type: loadout #Viper
+  id: FactionViperLoadout
+  price: 0
+  storage:
+    back:
+    - WeaponPistolViper

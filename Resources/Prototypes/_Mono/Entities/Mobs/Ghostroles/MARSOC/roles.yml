@@ -1,7 +1,3 @@
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 # FTL
 - type: entity
   parent: MobHumanMarsocBase
@@ -111,8 +107,6 @@
   - type: RandomHumanoidAppearance
     randomizeName: True
   - type: HumanoidAppearance
-    height: 1.0
-    width: 1.0
   - type: Loadout
     prototypes: [MarsocOperativeGear]
     roleLoadout: [RoleSurvivalTankOnly]

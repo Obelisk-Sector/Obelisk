@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server.Popups;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
@@ -9,10 +5,10 @@ using Content.Shared.Verbs;
 
 namespace Content.Server._Mono.Radar;
 
-public sealed class ToggleableSignatureSystem : EntitySystem
+public sealed partial class ToggleableSignatureSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly SharedInteractionSystem _interaction = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
 
     public override void Initialize()
     {

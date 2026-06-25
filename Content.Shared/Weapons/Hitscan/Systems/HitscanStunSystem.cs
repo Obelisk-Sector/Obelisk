@@ -1,17 +1,12 @@
-// SPDX-FileCopyrightText: 2025 beck-thompson
-// SPDX-FileCopyrightText: 2025 bitcrushing
-//
-// SPDX-License-Identifier: MIT
-
 using Content.Shared.Damage.Systems;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanStunSystem : EntitySystem
+public sealed partial class HitscanStunSystem : EntitySystem
 {
-    [Dependency] private readonly StaminaSystem _stamina = default!; // Mono - SharedStaminaSystem not ported yet
+    [Dependency] private StaminaSystem _stamina = default!; // Mono - SharedStaminaSystem not ported yet
 
     public override void Initialize()
     {

@@ -1,16 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Ark
-# SPDX-FileCopyrightText: 2025 Blu
-# SPDX-FileCopyrightText: 2025 BlueHNT
-# SPDX-FileCopyrightText: 2025 Daniel Lenrd
-# SPDX-FileCopyrightText: 2025 Onezero0
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 ark1368
-# SPDX-FileCopyrightText: 2025 core-mene
-# SPDX-FileCopyrightText: 2025 gus
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: entity
   parent: [VendingMachineAmmo, BaseStructureDisableAnchoring]
   id: VendingMachineAmmoPOIMercenary
@@ -19,6 +6,7 @@
   components:
   - type: VendingMachine
     pack: WeaponryWorksVendPOIMercInventory
+    requiresCash: true
   - type: AccessReader
     access: [["Mercenary"], ["Security"]]
 
@@ -72,7 +60,7 @@
     - state: panel
       map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: AccessReader
-    access: [["Mercenary"], ["Security"]]
+    access: [["USSP"], ["USSPHigh"]]
 
 - type: entity
   parent: [BaseStructureDisableToolUse, VendingMachineSyndieContraband]
@@ -99,6 +87,7 @@
     # denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 1
+    requiresCash: true
   - type: MarketModifier
     mod: 10
   - type: Advertise
@@ -139,6 +128,7 @@
     # denyState: deny-unshaded
     ejectDelay: 1.9
     initialStockQuality: 0.35
+
 
 - type: entity
   parent: [VendingMachineAstroVend, BaseStructureDisableAnchoring]

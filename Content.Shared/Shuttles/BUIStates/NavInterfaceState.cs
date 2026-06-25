@@ -1,13 +1,3 @@
-// SPDX-FileCopyrightText: 2023 Kevin Zheng
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2024 Whatstone
-// SPDX-FileCopyrightText: 2024 metalgearsloth
-// SPDX-FileCopyrightText: 2024 neuPanda
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
 using Content.Shared._NF.Shuttles.Events; // Frontier - InertiaDampeningMode access
@@ -30,8 +20,6 @@ public sealed class NavInterfaceState
     public Angle? Angle;
 
     public Dictionary<NetEntity, List<DockingPortState>> Docks;
-
-    public bool RotateWithEntity = true;
 
     /// <summary>
     /// Custom display names for network port buttons.
@@ -56,18 +44,13 @@ public sealed class NavInterfaceState
     public bool HideCoords = false;
     // End Frontier fields
 
-    public bool Pannable = false; // Mono
-    public bool RelativePanning = false; // Mono
-
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
         Angle? angle,
         Dictionary<NetEntity, List<DockingPortState>> docks,
         InertiaDampeningMode dampeningMode, // Frontier: add dampeningMode
-        Dictionary<string, string>? networkPortNames = null,
-        bool pannable = false, // Mono
-        bool relativePan = false) // Mono
+        Dictionary<string, string>? networkPortNames = null)
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
@@ -75,8 +58,6 @@ public sealed class NavInterfaceState
         Docks = docks;
         DampeningMode = dampeningMode; // Frontier
         NetworkPortNames = networkPortNames ?? new Dictionary<string, string>();
-        Pannable = pannable; // Mono
-        RelativePanning = relativePan; // Mono
     }
 }
 

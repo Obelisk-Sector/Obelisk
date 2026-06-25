@@ -1,16 +1,12 @@
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server.Popups;
 using Content.Shared.Access.Components;
 using Content.Shared.Interaction;
 
 namespace Content.Server._Mono.Access;
 
-public sealed class AccessGrantableSystem : EntitySystem
+public sealed partial class AccessGrantableSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {

@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 LaCumbiaDelCoronavirus
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 RikuTheKiller
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 namespace Content.Server._Mono.Projectiles.TargetSeeking;
 
 /// <summary>
@@ -30,7 +22,7 @@ public sealed partial class TargetSeekingComponent : Component
     /// How quickly the projectile can change direction in degrees per second.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public Angle? TurnRate = 100f;
+    public Angle? TurnRate = 60f;
 
     /// <summary>
     /// The current target entity being tracked.

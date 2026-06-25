@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2022 metalgearsloth
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server.NPC.Systems;
 using Content.Shared.Physics;
 using Robust.Shared.Audio;
@@ -55,6 +49,11 @@ public sealed partial class NPCRangedCombatComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public float ShootAccumulator;
+
+    /// <summary>
+    /// Mono - accept having to fire for up to this many seconds to destroy an obstacle.
+    /// </summary>
+    public float ShotsThreshold = 2;
 
     /// <summary>
     /// Sound to play if the target enters line of sight.

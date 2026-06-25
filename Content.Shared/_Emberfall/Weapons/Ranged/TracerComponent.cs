@@ -1,8 +1,3 @@
-// SPDX-FileCopyrightText: 2025 MilonPL
-// SPDX-FileCopyrightText: 2025 starch
-//
-// SPDX-License-Identifier: MIT
-
 using System.Numerics;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -38,7 +33,7 @@ public sealed partial class TracerComponent : Component
 }
 
 [Serializable, NetSerializable, DataRecord]
-public struct TracerData(List<Vector2> positionHistory, TimeSpan endTime)
+public partial struct TracerData(List<Vector2> positionHistory, TimeSpan endTime)
 {
     /// <summary>
     /// The history of positions this tracer has moved through

@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: MPL-2.0
-
 using Content.Shared._Starlight.CollectiveMind;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -9,11 +5,11 @@ using Robust.Shared.GameObjects;
 
 namespace Content.Shared._Starlight.CollectiveMind;
 
-public sealed class CollectiveMindUpdateSystem : EntitySystem
+public sealed partial class CollectiveMindUpdateSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly IComponentFactory _componentFactory = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IComponentFactory _componentFactory = default!;
+    [Dependency] private TagSystem _tag = default!;
 
     private static Dictionary<string, int> _currentId = new();
 

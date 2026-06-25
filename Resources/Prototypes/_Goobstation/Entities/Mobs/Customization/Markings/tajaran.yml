@@ -1,11 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden
-# SPDX-FileCopyrightText: 2025 Piras314
-# SPDX-FileCopyrightText: 2025 SX-7
-# SPDX-FileCopyrightText: 2025 coderabbitai[bot]
-# SPDX-FileCopyrightText: 2025 gluesniffler
-# SPDX-FileCopyrightText: 2025 inquisitor-star
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
 # Tajaran Tails
 
 # Tajaran Tails
@@ -49,6 +41,28 @@
     state: tail_anim
   - sprite: _Goobstation/Mobs/Customization/Tajaran/tail_markings.rsi
     state: tail_anim_rings
+
+- type: marking
+  id: TajaranLeopardTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Tajaran]
+  sprites:
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/leopard_tail.rsi
+    state: m_tail_leopard_primary
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/leopard_tail.rsi
+    state: m_tail_leopard_tertiary
+
+- type: marking
+  id: TajaranLeopardWag
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Tajaran]
+  sprites:
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/leopard_tail.rsi
+    state: m_tail_leopard_primary_wag
+  - sprite: _Goobstation/Mobs/Customization/Tajaran/leopard_tail.rsi
+    state: m_tail_leopard_tertiary_wag
 
 # Tajaran Ears
 

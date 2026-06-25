@@ -1,35 +1,3 @@
-// SPDX-FileCopyrightText: 2020 Víctor Aguilera Puerto
-// SPDX-FileCopyrightText: 2020 chairbender
-// SPDX-FileCopyrightText: 2021 Acruid
-// SPDX-FileCopyrightText: 2021 Vera Aguilera Puerto
-// SPDX-FileCopyrightText: 2022 0x6273
-// SPDX-FileCopyrightText: 2022 Chief-Engineer
-// SPDX-FileCopyrightText: 2022 Chris V
-// SPDX-FileCopyrightText: 2022 Paul Ritter
-// SPDX-FileCopyrightText: 2022 Rane
-// SPDX-FileCopyrightText: 2022 Visne
-// SPDX-FileCopyrightText: 2022 keronshb
-// SPDX-FileCopyrightText: 2023 Cheackraze
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 Hannah Giovanna Dawson
-// SPDX-FileCopyrightText: 2023 Moony
-// SPDX-FileCopyrightText: 2023 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2023 TemporalOroboros
-// SPDX-FileCopyrightText: 2023 chromiumboy
-// SPDX-FileCopyrightText: 2023 ubis1
-// SPDX-FileCopyrightText: 2024 Ed
-// SPDX-FileCopyrightText: 2024 Ilya246
-// SPDX-FileCopyrightText: 2024 Jezithyr
-// SPDX-FileCopyrightText: 2024 Leon Friedrich
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2024 Whatstone
-// SPDX-FileCopyrightText: 2024 checkraze
-// SPDX-FileCopyrightText: 2024 metalgearsloth
-// SPDX-FileCopyrightText: 2025 ScarKy0
-// SPDX-FileCopyrightText: 2025 deltanedas
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Administration.Logs;
@@ -73,26 +41,26 @@ using Robust.Shared.Containers; // Frontier
 namespace Content.Server.Lathe
 {
     [UsedImplicitly]
-    public sealed class LatheSystem : SharedLatheSystem
+    public sealed partial class LatheSystem : SharedLatheSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly ContainerSystem _container = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddle = default!;
-        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly StackSystem _stack = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly ContrabandTurnInSystem _contraband = default!; // Frontier
-        [Dependency] private readonly DeviceLinkSystem _deviceLink = default!; // Mono
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IPrototypeManager _proto = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private AtmosphereSystem _atmosphere = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private ContainerSystem _container = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private UserInterfaceSystem _uiSys = default!;
+        [Dependency] private MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddle = default!;
+        [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private StackSystem _stack = default!;
+        [Dependency] private ContrabandTurnInSystem _contraband = default!; // Mono
+        [Dependency] private TransformSystem _transform = default!;
+        [Dependency] private DeviceLinkSystem _deviceLink = default!; // Mono
 
         /// <summary>
         /// Per-tick cache
@@ -124,7 +92,6 @@ namespace Content.Server.Lathe
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
             SubscribeLocalEvent<TechnologyDatabaseComponent, LatheGetRecipesEvent>(OnGetRecipes);
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
-            SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
 
             //Frontier: upgradeable parts
             SubscribeLocalEvent<LatheComponent, RefreshPartsEvent>(OnPartsRefresh);
@@ -132,6 +99,7 @@ namespace Content.Server.Lathe
 
             // Mono
             SubscribeLocalEvent<LatheComponent, SignalReceivedEvent>(OnSignalReceived);
+            SubscribeLocalEvent<LatheHeatProducingComponent, ExaminedEvent>(OnHeatExamine);
         }
         public override void Update(float frameTime)
         {
@@ -161,12 +129,14 @@ namespace Content.Server.Lathe
                     FinishProducing(uid, lathe);
             }
 
-            var heatQuery = EntityQueryEnumerator<LatheHeatProducingComponent, LatheProducingComponent, TransformComponent>();
-            while (heatQuery.MoveNext(out var uid, out var heatComp, out _, out var xform))
+            // Mono - now checks all and not only producing lathes in order to check air temperature
+            var heatQuery = EntityQueryEnumerator<LatheHeatProducingComponent, LatheComponent, TransformComponent>();
+            while (heatQuery.MoveNext(out var uid, out var heatComp, out var latheComp, out var xform))
             {
-                if (_timing.CurTime < heatComp.NextSecond)
+                heatComp.UpdateAccumulator += TimeSpan.FromSeconds(frameTime);
+                if (heatComp.UpdateAccumulator < heatComp.UpdateSpacing)
                     continue;
-                heatComp.NextSecond += TimeSpan.FromSeconds(1);
+                heatComp.UpdateAccumulator -= heatComp.UpdateSpacing;
 
                 var position = _transform.GetGridTilePositionOrDefault((uid, xform));
                 _environments.Clear();
@@ -183,13 +153,31 @@ namespace Content.Server.Lathe
                     }
                 }
 
-                if (_environments.Count > 0)
+                if (_environments.Count == 0)
+                    continue;
+
+                var avgTemp = 0f;
+                var totalHeatCap = 0f;
+                foreach (var env in _environments)
                 {
-                    var heatPerTile = heatComp.EnergyPerSecond / _environments.Count;
-                    foreach (var env in _environments)
-                    {
-                        _atmosphere.AddHeat(env, heatPerTile);
-                    }
+                    avgTemp += env.Temperature;;
+                    totalHeatCap += _atmosphere.GetHeatCapacity(env, true);
+                }
+                avgTemp /= _environments.Count;
+                var wasHot = heatComp.IsHot;
+                heatComp.IsHot = heatComp.TemperatureCap != null && avgTemp + heatComp.EnergyPerSecond / totalHeatCap > heatComp.TemperatureCap;
+                if (heatComp.IsHot)
+                    continue;
+                else if (wasHot && !latheComp.Paused)
+                    TryStartProducing(uid, latheComp);
+
+                if (!HasComp<LatheProducingComponent>(uid))
+                    continue;
+
+                var heatPerTile = heatComp.EnergyPerSecond / _environments.Count;
+                foreach (var env in _environments)
+                {
+                    _atmosphere.AddHeat(env, heatPerTile);
                 }
             }
         }
@@ -198,19 +186,17 @@ namespace Content.Server.Lathe
         {
             if (args.Storage != uid)
                 return;
-            var materialWhitelist = new List<ProtoId<MaterialPrototype>>();
+            var materialWhitelist = new HashSet<ProtoId<MaterialPrototype>>();
             var recipes = GetAvailableRecipes(uid, component, true);
             foreach (var id in recipes)
             {
                 if (!_proto.TryIndex(id, out var proto))
                     continue;
                 foreach (var (mat, _) in proto.Materials)
-                {
-                    if (!materialWhitelist.Contains(mat))
-                    {
-                        materialWhitelist.Add(mat);
-                    }
-                }
+                    materialWhitelist.Add(mat);
+                // Mono
+                foreach (var (mat, _) in proto.MaterialResult)
+                    materialWhitelist.Add(mat);
             }
 
             var combined = args.Whitelist.Union(materialWhitelist).ToList();
@@ -240,7 +226,7 @@ namespace Content.Server.Lathe
         }
 
         public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null, // Frontier: add quantity
-                                  bool canDebt = false) // Mono
+                                   EntityUid? actor = null, bool canDebt = false) // Mono
         {
             if (!Resolve(uid, ref component))
                 return false;
@@ -258,7 +244,8 @@ namespace Content.Server.Lathe
             if (component.Queue.Count > 0 && component.Queue[^1].Recipe.ID == recipe.ID)
                 component.Queue[^1].ItemsRequested += quantity;
             else
-                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity));
+                component.Queue.Add(new LatheRecipeBatch(recipe, 0, quantity,
+                GetNetEntity(actor))); // Mono: Adds actor
             // End Frontier
             // component.Queue.Add(recipe); // Frontier
 
@@ -270,11 +257,16 @@ namespace Content.Server.Lathe
             if (!Resolve(uid, ref component))
                 return false;
             // Mono - pause
-            if (component.Paused || component.CurrentRecipe != null || component.Queue.Count <= 0 || !this.IsPowered(uid, EntityManager))
+            if (component.Paused
+                || component.CurrentRecipe != null
+                || component.Queue.Count <= 0
+                || !this.IsPowered(uid, EntityManager)
+                || TryComp<LatheHeatProducingComponent>(uid, out var heat) && heat.IsHot) // Mono - if you want to add more conditions turn this into an event please
                 return false;
 
             // Frontier: handle batches
             var batch = component.Queue.First();
+            var actor = batch.Actor; // Mono: Adds actor
             var recipe = batch.Recipe;
             // <Mono> - resources now consumed as the production goes
             if (!CanProduce(uid, recipe, 1, component))
@@ -291,9 +283,7 @@ namespace Content.Server.Lathe
 
             foreach (var (mat, amount) in recipe.Materials)
             {
-                var adjustedAmount = recipe.ApplyMaterialDiscount
-                    ? (int) (-amount * component.FinalMaterialUseMultiplier) // Frontier: MaterialUseMultiplier<FinalMaterialUseMultiplier
-                    : -amount;
+                var adjustedAmount = -AdjustMaterial(amount, recipe.MaterialDiscountScale, component.FinalMaterialUseMultiplier);
 
                 _materialStorage.TryChangeMaterialAmount(uid, mat, adjustedAmount);
             }
@@ -309,6 +299,7 @@ namespace Content.Server.Lathe
             var lathe = EnsureComp<LatheProducingComponent>(uid);
             lathe.StartTime = _timing.CurTime;
             lathe.ProductionLength = time * component.FinalTimeMultiplier; // Frontier: TimeMultiplier<FinalTimeMultiplier
+            lathe.Actor = GetEntity(actor);
             component.CurrentRecipe = recipe;
 
             var ev = new LatheStartPrintingEvent(recipe);
@@ -340,13 +331,17 @@ namespace Content.Server.Lathe
                     if (result.Valid)
                     {
                         ModifyPrintedEntityPrice(uid, comp, result);
+                        // End Frontier
 
-                        _contraband.ClearContrabandValue(result);
+                        // Mono: Handle printable contraband
+                        _contraband.HandleContrabandValueByCompany(result, prodComp.Actor);
                     }
-                    // End Frontier
 
                     _stack.TryMergeToContacts(result);
                 }
+
+                // Mono
+                _materialStorage.TryChangeMaterialAmount(uid, comp.CurrentRecipe.MaterialResult.ToDictionary()); // copy
 
                 if (comp.CurrentRecipe.ResultReagents is { } resultReagents &&
                     comp.ReagentOutputSlotId is { } slotId)
@@ -369,8 +364,9 @@ namespace Content.Server.Lathe
                 }
 
                 // <Mono>
+                // Add the actor that previously queued to looped items
                 if (comp.Loop)
-                    TryAddToQueue(uid, comp.CurrentRecipe, 1, comp, true);
+                    TryAddToQueue(uid, comp.CurrentRecipe, 1, comp, prodComp.Actor, true);
 
                 _deviceLink.SendSignal(uid, comp.ProducedPort, true);
                 // </Mono>
@@ -434,11 +430,6 @@ namespace Content.Server.Lathe
 
             if (TryComp<TechnologyDatabaseComponent>(uid, out var database))
                 AddRecipesFromDynamicPacks(ref args, database, component.EmagDynamicPacks);
-        }
-
-        private void OnHeatStartPrinting(EntityUid uid, LatheHeatProducingComponent component, LatheStartPrintingEvent args)
-        {
-            component.NextSecond = _timing.CurTime;
         }
 
         private void OnMaterialAmountChanged(EntityUid uid, LatheComponent component, ref MaterialAmountChangedEvent args)
@@ -512,7 +503,7 @@ namespace Content.Server.Lathe
             if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
                 // Frontier: batching recipes
-                if (TryAddToQueue(uid, recipe, args.Quantity, component))
+                if (TryAddToQueue(uid, recipe, args.Quantity, component, args.Actor))
                 {
                     _adminLogger.Add(LogType.Action,
                         LogImpact.Low,
@@ -570,6 +561,13 @@ namespace Content.Server.Lathe
             args.AddPercentageUpgrade("lathe-component-upgrade-material-use", component.FinalMaterialUseMultiplier);
         }
 
+        // Mono
+        private void OnHeatExamine(Entity<LatheHeatProducingComponent> ent, ref ExaminedEvent args)
+        {
+            if (ent.Comp.IsHot)
+                args.PushMarkup(Loc.GetString("lathe-heat-producing-too-hot"));
+        }
+
         // Frontier: modify item value
         private void ModifyPrintedEntityPrice(EntityUid uid, LatheComponent component, EntityUid target)
         {
@@ -609,13 +607,31 @@ namespace Content.Server.Lathe
         {
             if (args.Port == ent.Comp.PausePort)
             {
-                ent.Comp.Paused = true;
+                TryPause((ent, ent.Comp));
             }
             else if (args.Port == ent.Comp.ResumePort)
             {
-                ent.Comp.Paused = false;
-                TryStartProducing(ent, ent.Comp);
+                TryUnpause((ent, ent.Comp));
             }
+        }
+
+        public void TryPause(Entity<LatheComponent?> ent)
+        {
+            if (!Resolve(ent, ref ent.Comp))
+                return;
+
+            ent.Comp.Paused = true;
+        }
+
+        public void TryUnpause(Entity<LatheComponent?> ent)
+        {
+            if (!Resolve(ent, ref ent.Comp))
+                return;
+
+            bool wasPaused = ent.Comp.Paused;
+            ent.Comp.Paused = false;
+            if (wasPaused)
+                TryStartProducing(ent, ent.Comp);
         }
     }
 }

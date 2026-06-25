@@ -1,12 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Salvantrix
-// SPDX-FileCopyrightText: 2024 Whatstone
-// SPDX-FileCopyrightText: 2025 Ark
-// SPDX-FileCopyrightText: 2025 Dvir
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 ark1368
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Access;
 using Content.Shared._NF.Shipyard;
 using Content.Shared._NF.Shipyard.Prototypes;
@@ -57,4 +48,22 @@ public sealed partial class ShipyardVoucherComponent : Component
     /// </summary>
     [DataField]
     public string? CompanyName;
+
+    /// <summary>
+    ///     Mono: Delay between purchases with this voucher
+    /// </summary>
+    [DataField]
+    public TimeSpan Cooldown = TimeSpan.FromSeconds(5);
+
+    /// <summary>
+    ///     Mono: Current purchase delay on this voucher
+    /// </summary>
+    [DataField, AutoPausedField]
+    public TimeSpan NextBuyAt = TimeSpan.FromSeconds(0);
+
+    /// <summary>
+    ///     Mono: Whether this voucher is allowed to have its deed unassigned.
+    /// </summary>
+    [DataField]
+    public bool CanBeUnassigned = true;
 }

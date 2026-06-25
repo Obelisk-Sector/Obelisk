@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2025 beck-thompson
-//
-// SPDX-License-Identifier: MIT
-
 using System.Numerics;
 using Content.Shared.Weapons.Hitscan.Components;
 using Content.Shared.Weapons.Hitscan.Events;
@@ -12,9 +8,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanBasicVisualsSystem : EntitySystem
+public sealed partial class HitscanBasicVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {

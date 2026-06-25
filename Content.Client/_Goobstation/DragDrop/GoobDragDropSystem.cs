@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2025 BombasterDS2
-// SPDX-FileCopyrightText: 2025 GoobBot
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Client._Goobstation.Construction;
 using Content.Client.Construction;
 using Content.Shared._Goobstation.DragDrop;
@@ -15,8 +9,8 @@ namespace Content.Client._Goobstation.DragDrop;
 
 public sealed partial class GoobDragDropSystem : SharedGoobDragDropSystem
 {
-    [Dependency] private readonly ConstructionSystem _construction = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private ConstructionSystem _construction = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

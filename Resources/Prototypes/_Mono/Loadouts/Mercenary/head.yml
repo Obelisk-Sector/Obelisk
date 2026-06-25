@@ -1,10 +1,11 @@
-# SPDX-FileCopyrightText: 2025 Redrover1760
-# SPDX-FileCopyrightText: 2025 starch
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 - type: loadout
   id: MercenaryClothingHeadHatBH
   price: 0
   equipment:
     head: ClothingHeadHatBH
+
+- type: loadout
+  id: MercenaryClothingHeadBPHelmetLight
+  price: 5000
+  equipment:
+    head: ClothingHeadBPHelmetLight

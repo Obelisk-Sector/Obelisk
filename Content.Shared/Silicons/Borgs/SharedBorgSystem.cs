@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Fildrance
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2024 deltanedas
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Item.ItemToggle;
@@ -25,10 +17,10 @@ namespace Content.Shared.Silicons.Borgs;
 /// </summary>
 public abstract partial class SharedBorgSystem : EntitySystem
 {
-    [Dependency] protected readonly SharedContainerSystem Container = default!;
-    [Dependency] protected readonly ItemSlotsSystem ItemSlots = default!;
-    [Dependency] protected readonly ItemToggleSystem Toggle = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
+    [Dependency] protected SharedContainerSystem Container = default!;
+    [Dependency] protected ItemSlotsSystem ItemSlots = default!;
+    [Dependency] protected ItemToggleSystem Toggle = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

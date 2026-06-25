@@ -1,16 +1,12 @@
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Server.Popups;
 using Content.Server.Worldgen.Components.Debris;
 using Content.Shared.Verbs;
 
 namespace Content.Server._Mono.GridClaimer;
 
-public sealed class GridClaimerSystem : EntitySystem
+public sealed partial class GridClaimerSystem : EntitySystem
 {
-    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private PopupSystem _popup = default!;
 
     public override void Initialize()
     {

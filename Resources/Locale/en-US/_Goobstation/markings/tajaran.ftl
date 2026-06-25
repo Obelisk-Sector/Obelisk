@@ -1,10 +1,3 @@
-# SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
-# SPDX-FileCopyrightText: 2025 Aiden <aiden@djkraz.com>
-# SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
-# SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
-#
-# SPDX-License-Identifier: AGPL-3.0-or-later
-
 marking-TajaranTorsoBelly = Chest Fur
 marking-TajaranTorsoBelly-belly = Fur
 marking-TajaranTorsoCrest = Chest Fur (Crest)
@@ -48,6 +41,12 @@ marking-TajaranTailRetro-tail = Tail
 marking-TajaranTailRetroRings = Classic Tail (Rings)
 marking-TajaranTailRetroRings-tail = Tail
 marking-TajaranTailRetroRings-tail_rings = Rings
+marking-TajaranLeopardTail = Leopard tail
+marking-TajaranLeopardTail-m_tail_leopard_primary = Primary
+marking-TajaranLeopardTail-m_tail_leopard_tertiary = Spots
+marking-TajaranLeopardWag = Leopard tail (Animated)
+marking-TajaranLeopardWag-m_tail_leopard_primary_wag = Primary
+marking-TajaranLeopardWag-m_tail_leopard_tertiary_wag = Spots
 
 marking-TajaranOverlayPatch = Patches
 marking-TajaranOverlayPatch-patch = Patches

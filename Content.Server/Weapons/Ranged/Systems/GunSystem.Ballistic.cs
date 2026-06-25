@@ -1,11 +1,3 @@
-// SPDX-FileCopyrightText: 2022 Kara
-// SPDX-FileCopyrightText: 2022 metalgearsloth
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 TemporalOroboros
-// SPDX-FileCopyrightText: 2025 tonotom
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
@@ -14,6 +6,17 @@ namespace Content.Server.Weapons.Ranged.Systems;
 
 public sealed partial class GunSystem
 {
+    /// <summary>
+    /// Adds an ammo entity to a BallisticAmmoProvider (Mono - entire method)
+    /// </summary>
+    public void AddBallisticAmmo(Entity<BallisticAmmoProviderComponent?> ent, EntityUid ammoEntity)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+        ent.Comp.Entities.Add(ammoEntity);
+        DirtyField(ent, ent.Comp, nameof(BallisticAmmoProviderComponent.Entities));
+    }
+
     protected override void Cycle(EntityUid uid, BallisticAmmoProviderComponent component, MapCoordinates coordinates)
     {
         EntityUid? ent = null;
@@ -29,7 +32,7 @@ public sealed partial class GunSystem
 			ent = existing; //Mono: Sound bugfix
             EnsureShootable(existing);
         }
-        else if (component.UnspawnedCount > 0)
+        else if (component.UnspawnedCount > 0 && !component.InfiniteUnspawned) // Mono - no ammo generator
         {
             component.UnspawnedCount--;
             DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));

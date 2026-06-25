@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2025 BeBright
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Silicons.Borgs.Components;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
@@ -29,8 +23,12 @@ public sealed class BorgSelectTypeUserInterface : BoundUserInterface
     protected override void Open()
     {
         base.Open();
+        //Mono: Selectable borg whitelist
+        EntMan.TryGetComponent<BorgSwitchableTypeComponent>(Owner, out var comp);
+        var whitelist = comp?.TypeWhitelist ?? [];
 
         _menu = this.CreateWindow<BorgSelectTypeMenu>();
+        _menu.Populate(whitelist); //Mono
         _menu.ConfirmedBorgType += (prototype, subtype) => SendPredictedMessage(new BorgSelectTypeMessage(prototype, subtype));
     }
 }

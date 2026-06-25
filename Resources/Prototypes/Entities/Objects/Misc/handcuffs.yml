@@ -2,7 +2,7 @@
   name: handcuffs
   description: Used to detain criminals and other assholes.
   id: Handcuffs
-  parent: [BaseItem, BaseC1Contraband] # Frontier: BaseSecurityCommandContraband<BaseC1Contraband
+  parent: BaseItem
   components:
   # Goobstation edit start
   - type: EmitSoundOnPickup
@@ -37,10 +37,6 @@
         Blunt: 0
   - type: StaticPrice
     price: 19
-  - type: GuideHelp
-    guides:
-    - Security
-    # - Antagonists # Frontier: guidebook entry removed
   - type: UseDelay
     delay: 3
 

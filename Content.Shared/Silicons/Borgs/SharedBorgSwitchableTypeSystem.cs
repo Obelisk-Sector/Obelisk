@@ -1,10 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2025 BeBright
-// SPDX-FileCopyrightText: 2025 EckoAurum
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Actions;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Components;
@@ -19,14 +12,14 @@ namespace Content.Shared.Silicons.Borgs;
 /// Implements borg type switching.
 /// </summary>
 /// <seealso cref="BorgSwitchableTypeComponent"/>
-public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
+public abstract partial class SharedBorgSwitchableTypeSystem : EntitySystem
 {
     // TODO: Allow borgs to be reset to default configuration.
 
-    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
-    [Dependency] protected readonly IPrototypeManager Prototypes = default!;
-    [Dependency] private readonly InteractionPopupSystem _interactionPopup = default!;
+    [Dependency] private SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private SharedUserInterfaceSystem _userInterface = default!;
+    [Dependency] protected IPrototypeManager Prototypes = default!;
+    [Dependency] private InteractionPopupSystem _interactionPopup = default!;
 
     [ValidatePrototypeId<EntityPrototype>]
     public const string ActionId = "ActionSelectBorgType";
@@ -85,6 +78,14 @@ public abstract class SharedBorgSwitchableTypeSystem : EntitySystem
             return;
 
         if (!Prototypes.HasIndex(args.Prototype) || !Prototypes.HasIndex(args.Subtype))
+            return;
+        //Mono: Selectable borg whitelist - Validation
+        if (ent.Comp.TypeWhitelist.Count == 0)
+        {
+            Log.Error("Empty whitelist on selectable cyborg chassis");
+            return;
+        }
+        if (!ent.Comp.TypeWhitelist.Contains(args.Prototype))
             return;
 
         SelectBorgModule(ent, args.Prototype, args.Subtype);

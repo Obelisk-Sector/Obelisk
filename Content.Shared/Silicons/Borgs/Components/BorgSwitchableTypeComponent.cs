@@ -1,9 +1,3 @@
-// SPDX-FileCopyrightText: 2024 Pieter-Jan Briers
-// SPDX-FileCopyrightText: 2025 BeBright
-// SPDX-FileCopyrightText: 2025 Ilya246
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Actions;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
@@ -51,6 +45,9 @@ public sealed partial class BorgSwitchableTypeComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<RadioChannelPrototype>[] InherentRadioChannels = [];
+    //Mono: Selectable borg whitelist
+    [DataField(required: true), AutoNetworkedField]
+    public List<ProtoId<BorgTypePrototype>> TypeWhitelist = new();
 }
 
 /// <summary>

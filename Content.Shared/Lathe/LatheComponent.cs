@@ -1,17 +1,3 @@
-// SPDX-FileCopyrightText: 2023 DrSmugleaf
-// SPDX-FileCopyrightText: 2023 Hannah Giovanna Dawson
-// SPDX-FileCopyrightText: 2023 Leon Friedrich
-// SPDX-FileCopyrightText: 2023 chromiumboy
-// SPDX-FileCopyrightText: 2023 ubis1
-// SPDX-FileCopyrightText: 2024 Nemanja
-// SPDX-FileCopyrightText: 2024 Whatstone
-// SPDX-FileCopyrightText: 2024 checkraze
-// SPDX-FileCopyrightText: 2025 Ilya246
-// SPDX-FileCopyrightText: 2025 Redrover1760
-// SPDX-FileCopyrightText: 2025 deltanedas
-//
-// SPDX-License-Identifier: AGPL-3.0-or-later
-
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.DeviceLinking; // Mono
 using Content.Shared.Lathe.Prototypes;
@@ -107,7 +93,7 @@ namespace Content.Shared.Lathe
         [Access(typeof(SharedLatheSystem))] // Mono
         public float FinalMaterialUseMultiplier = 1;
 
-        public const float DefaultPartRatingMaterialUseMultiplier = 0.85f; // Frontier: restored for machine parts
+        public const float DefaultPartRatingMaterialUseMultiplier = 0.93f; // Frontier: restored for machine parts // Mono - nerf
 
         //Frontier Upgrade Code Restore
         /// <summary>
@@ -198,14 +184,17 @@ namespace Content.Shared.Lathe
         private static int NextIndex = 0; // Mono
         public int Index; // Mono - for de-queuing recipes to work properly
         public LatheRecipePrototype Recipe;
+        public NetEntity? Actor; // Mono - Log the person who queued the recipe.
         public int ItemsPrinted;
         public int ItemsRequested;
 
-        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested)
+        public LatheRecipeBatch(LatheRecipePrototype recipe, int itemsPrinted, int itemsRequested,
+            NetEntity? actor) // Mono
         {
             Recipe = recipe;
             ItemsPrinted = itemsPrinted;
             ItemsRequested = itemsRequested;
+            Actor = actor; // Mono
             Index = NextIndex++; // Mono
         }
     }
